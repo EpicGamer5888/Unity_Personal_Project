@@ -17,9 +17,10 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]
     public bool takenDamage = false;
     public float damangeCooldownTimer = .5f;
-    public int health = 5;
+    public int health = 10;
     public int maxHealth = 10;
     public int healtPickupAmt = 5;
+    public GameObject Ground0;
 
     [Header("Weapon Stats")]
     public Transform weaponSlot;
@@ -123,7 +124,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // Jump
-            if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(transform.position, -transform.up, groundDetection))
+            if (Input.GetKeyDown(KeyCode.Space) && Physics.Raycast(Ground0.transform.position, -transform.up, groundDetection))
                 temp.y = jumpHeight;
 
             // Give calculated velocity back to rigidbody

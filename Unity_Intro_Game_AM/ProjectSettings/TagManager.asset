@@ -8,6 +8,7 @@ TagManager:
   - weapon
   - bullet
   - basicEnemy
+  - ammoPickup
   layers:
   - Default
   - TransparentFX

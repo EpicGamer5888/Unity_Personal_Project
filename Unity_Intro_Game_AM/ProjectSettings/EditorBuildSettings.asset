@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level one.unity
     guid: fd2844e80c2a6d34b91ee29795579b45
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/tutorial.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

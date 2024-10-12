@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 2564c28883bf1a54080713c1c2993820, type: 2}
+  m_LightingDataAsset: {fileID: 112000004, guid: 7fb0c78a6d351c84288668284fce67ac, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: a36bc813b881d564382c3e1c6e56e285, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -898,16 +898,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157526785}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.0033944317, z: -0, w: 0.9999943}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 185856340}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.389, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000091552734}
   m_SizeDelta: {x: 610, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &185856339
@@ -945,7 +945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -624, y: 477}
+  m_AnchoredPosition: {x: -624, y: 403}
   m_SizeDelta: {x: 629.94, y: 58}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &185856341
@@ -9267,13 +9267,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837738400}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.9426996, y: 0.22976382, z: 0.11914984, w: -0.21054557}
+  m_LocalRotation: {x: -0.9147402, y: 0.2584284, z: -0.017401353, w: 0.3101007}
   m_LocalPosition: {x: -1563.246, y: 106.334564, z: 1787.8236}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 20.012, y: -159.998, z: 210.959}
+  m_LocalEulerAnglesHint: {x: -33.94, y: -193.389, z: 215.654}
 --- !u!1 &843944403
 GameObject:
   m_ObjectHideFlags: 0
@@ -16211,7 +16211,7 @@ Transform:
   m_GameObject: {fileID: 1406576127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 277, z: 0}
+  m_LocalPosition: {x: 0, y: 47, z: 0}
   m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []

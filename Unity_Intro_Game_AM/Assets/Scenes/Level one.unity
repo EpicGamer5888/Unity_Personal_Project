@@ -547,6 +547,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71232409}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &89513633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 89513634}
+  m_Layer: 0
+  m_Name: HealthSpawner1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &89513634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89513633}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -222.3, y: 192.6, z: -933.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1054597149}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &94869114
 GameObject:
   m_ObjectHideFlags: 0
@@ -18136,7 +18167,8 @@ Transform:
   m_LocalPosition: {x: 366.17612, y: -214.57735, z: 653.44183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 89513634}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1054597150
@@ -18154,17 +18186,8 @@ MonoBehaviour:
   canSpawnHealth: 1
   spawnTime: 10
   healthCount: 1
-  healthSpawn: 10
+  healthSpawn: 1
   healthspawnLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   healthPickupPrefab: {fileID: 7347890761621990197, guid: d5235784637402e45a316d9376c27236, type: 3}
   spawnedHealth: []
@@ -21852,7 +21875,7 @@ Transform:
   m_GameObject: {fileID: 1248863699}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 641.70026, y: 23.785522, z: -360}
+  m_LocalPosition: {x: -124.3, y: 212.7, z: -967}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28041,18 +28064,11 @@ MonoBehaviour:
   canSpawnAmmo: 1
   spawnTime: 10
   ammoCount: 1
-  ammoSpawn: 10
+  ammoSpawn: 3
   ammospawnLocations:
   - {fileID: 1248863700}
   - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
-  - {fileID: 1592612893}
+  - {fileID: 1889960474}
   AmmoBoxPrefab: {fileID: 881314447989363399, guid: e67a8295443425549a99925450fe393b, type: 3}
   spawnedAmmo: []
 --- !u!4 &1648337601
@@ -28068,6 +28084,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1889960474}
   - {fileID: 1592612893}
   - {fileID: 1248863700}
   m_Father: {fileID: 0}
@@ -32394,6 +32411,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885454584}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1889960473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1889960474}
+  m_Layer: 0
+  m_Name: AmmoSpawner3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1889960474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889960473}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 61.98, y: 213.69, z: -1048.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1648337601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1891534073
 GameObject:
   m_ObjectHideFlags: 0

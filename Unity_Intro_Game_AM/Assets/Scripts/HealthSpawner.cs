@@ -37,7 +37,7 @@ public class HealthSpawner : MonoBehaviour
                 spawnedHealth.Add(obj);
             }
             spawnedAt = Time.time;
-            yield return new WaitUntil(() => spawnedHealth.TrueForAll((GameObject obj) => obj == null));
+            yield return new WaitUntil(() => spawnedHealth.TrueForAll((GameObject obj) => obj == null) || Time.time > spawnedAt + 120);
             spawnedHealth.Clear();
         }
     }

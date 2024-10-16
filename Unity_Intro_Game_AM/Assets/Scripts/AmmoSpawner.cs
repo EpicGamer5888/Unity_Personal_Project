@@ -37,7 +37,7 @@ public class AmmoSpawner : MonoBehaviour
                 spawnedAmmo.Add(obj);
             }
             spawnedAt = Time.time;
-            yield return new WaitUntil(() => spawnedAmmo.TrueForAll((GameObject obj) => obj == null));
+            yield return new WaitUntil(() => spawnedAmmo.TrueForAll((GameObject obj) => obj == null) || Time.time > spawnedAt + 120);
             spawnedAmmo.Clear();
         }
     }

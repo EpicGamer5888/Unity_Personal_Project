@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Ground0;
 
     [Header("Weapon Stats")]
+    public AudioSource weaponSpeaker;
     public Transform weaponSlot;
     public GameObject shot;
     public float shotVel = 0;
@@ -51,6 +52,8 @@ public class PlayerController : MonoBehaviour
     public float Xsensitivity = 2.0f;
     public float Ysensitivity = 2.0f;
     public float camRotationLimit = 90f;
+
+    public GameObject theBoss;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetMouseButton(0) && canFire && currentClip > 0 && weaponID >= 0)
             {
+                weaponSpeaker.Play();
                 GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
                 s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotVel);
                 Destroy(s, bulletLifespan);
@@ -161,6 +165,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "bossDoor")
+        {
+            theBoss.SetActive(true);
+        }
         if(other.gameObject.tag == "weapon")
         {
             other.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
@@ -170,6 +178,7 @@ public class PlayerController : MonoBehaviour
             switch(other.gameObject.name)
             {
                 case "weapon1":
+                    weaponSpeaker = other.gameObject.GetComponent<AudioSource>();
                     weaponID = 0;
                     shotVel = 10000;
                     fireMode = 0;
@@ -179,7 +188,7 @@ public class PlayerController : MonoBehaviour
                     maxAmmo = 400;
                     currentAmmo = 200;
                     reloadAmt = 20;
-                    bulletLifespan = .5f;
+                    bulletLifespan = 2f;
                     break;
 
                 default:

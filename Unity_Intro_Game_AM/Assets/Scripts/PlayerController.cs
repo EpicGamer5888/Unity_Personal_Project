@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 10;
     public int healtPickupAmt = 5;
     public GameObject Ground0;
+    public AudioSource backMusic;
 
     [Header("Weapon Stats")]
     public AudioSource weaponSpeaker;
@@ -175,7 +176,9 @@ public class PlayerController : MonoBehaviour
 
             other.transform.SetParent(weaponSlot);
 
-            switch(other.gameObject.name)
+            print(other.gameObject.name);
+
+            switch (other.gameObject.name)
             {
                 case "weapon1":
                     weaponSpeaker = other.gameObject.GetComponent<AudioSource>();

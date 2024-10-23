@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     public int enemyCount = 0;
     public int enemySpawn = 0;
     public Transform[] spawnLocations;
-    public GameObject enemyPrefab;
+    public GameObject enemytryPrefab;
     public List<GameObject> spawnedEnemies;
     private float spawnedAt;
 
@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnTime);
             for (int i = 0; i < enemyCount; i++)
             {
-                GameObject obj = Instantiate(enemyPrefab, spawnLocations[Random.Range(0, spawnLocations.Length)].position, Quaternion.identity);
+                GameObject obj = Instantiate(enemytryPrefab, spawnLocations[Random.Range(0, spawnLocations.Length)].position, Quaternion.identity);
                 spawnedEnemies.Add(obj);
             }
             spawnedAt = Time.time;

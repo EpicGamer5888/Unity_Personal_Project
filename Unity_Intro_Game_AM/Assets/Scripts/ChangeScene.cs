@@ -15,13 +15,19 @@ public class ChangeScene : MonoBehaviour
     void Update()
     {
        
-        
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             SceneManager.LoadScene(2);
         }
+        if (collision.gameObject.tag == "Player")
+        {
+            SceneManager.LoadScene(3);
+        }
     }
+
 }
+

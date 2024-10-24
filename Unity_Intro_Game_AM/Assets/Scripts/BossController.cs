@@ -15,7 +15,6 @@ public class BossController : MonoBehaviour
     public int health = 100;
     public int maxHealth = 100;
     public int damageGiven = 5;
-    public int damageReceived = 1;
     public float pushBackForce = 20;
     public float distanceDetection = 50;
 
@@ -46,7 +45,7 @@ public class BossController : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet")
         {
-            health -= damageReceived;
+            health -= player.damage;
             Destroy(collision.gameObject);
         }
 

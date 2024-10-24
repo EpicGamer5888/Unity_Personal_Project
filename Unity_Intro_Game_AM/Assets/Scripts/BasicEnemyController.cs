@@ -13,7 +13,6 @@ public class BasicEnemyController : MonoBehaviour
     public int health = 3;
     public int maxHealth = 5;
     public int damageGiven = 1;
-    public int damageReceived = 1;
     public float pushBackForce = 5;
     public float distanceDetection = 25;
 
@@ -42,7 +41,7 @@ public class BasicEnemyController : MonoBehaviour
     {
         if(collision.gameObject.tag == "bullet")
         {
-            health -= damageReceived;
+            health -= player.damage;
             Destroy(collision.gameObject);
         }
 

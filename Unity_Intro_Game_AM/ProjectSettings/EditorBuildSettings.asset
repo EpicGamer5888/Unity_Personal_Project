@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Demo Screen.unity
     guid: c33d93e35b9fb8742b8912621c9cd8e9
+  - enabled: 1
+    path: Assets/Scenes/Main Menu 2.unity
+    guid: 2c637738a3042084ca21651391c5d331
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

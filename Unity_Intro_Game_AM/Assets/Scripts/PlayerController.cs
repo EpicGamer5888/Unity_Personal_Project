@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public Transform weaponSlot;
     public GameObject shot;
     public float shotVel = 0;
+    public int damage = 0;
     public int weaponID = -1;
     public int fireMode = 0;
     public float fireRate = 0;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public float reloadAmt = 0;
     public float bulletLifespan = 0;
     public bool canFire = true;
+    public bool isReloading = false;
 
 
     [Header("Movement Stats")]
@@ -95,7 +97,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButton(0) && canFire && currentClip > 0 && weaponID >= 0)
             {
                 weaponSpeaker.Play();
-                GameObject s = Instantiate(shot, weaponSlot.position, weaponSlot.rotation);
+                GameObject s = Instantiate(shot, weaponSlot.GetChild(0).position, weaponSlot.GetChild(0).rotation);
                 s.GetComponent<Rigidbody>().AddForce(playerCam.transform.forward * shotVel);
                 Destroy(s, bulletLifespan);
 
@@ -172,6 +174,12 @@ public class PlayerController : MonoBehaviour
         }
         if(other.gameObject.tag == "weapon")
         {
+            if (weaponSlot.childCount != 0)
+            {
+                weaponSlot.GetChild(0).position += weaponSlot.GetChild(0).forward * -4;
+                weaponSlot.DetachChildren();
+            }
+
             other.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
 
             other.transform.SetParent(weaponSlot);
@@ -182,6 +190,7 @@ public class PlayerController : MonoBehaviour
             {
                 case "weapon1":
                     weaponSpeaker = other.gameObject.GetComponent<AudioSource>();
+                    damage = 1;
                     weaponID = 0;
                     shotVel = 10000;
                     fireMode = 0;
@@ -193,6 +202,20 @@ public class PlayerController : MonoBehaviour
                     reloadAmt = 20;
                     bulletLifespan = 2f;
                     break;
+                case "weapon2":
+                    weaponSpeaker = other.gameObject.GetComponent<AudioSource>();
+                    damage = 5;
+                    weaponID = 1;
+                    shotVel = 10000;
+                    fireMode = 1;
+                    fireRate = 1f;
+                    currentClip = 15;
+                    clipSize = 15;
+                    maxAmmo = 200;
+                    currentAmmo = 100;
+                    reloadAmt = 15;
+                    bulletLifespan = 2f;
+                    break;
 
                 default:
                     break;
@@ -200,29 +223,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+   
+
     public void reloadClip()
     {
-        if (currentClip >= clipSize)
+        if (isReloading || currentClip >= clipSize)
+        {
             return;
+        }
 
+        isReloading = true;
+        canFire = false;
+
+        float reloadCount = clipSize - currentClip;
+
+        if (currentAmmo < reloadCount)
+        {
+            currentClip += currentAmmo; // Reload with whatever is left
+            currentAmmo = 0; // Clear current ammo
+        }
         else
         {
-            float reloadCount = clipSize - currentClip;
-
-            if (currentAmmo < reloadCount)
-            {
-                currentClip += currentAmmo;
-                currentAmmo = 0;
-                return;
-            }
-
-            else
-            {
-                currentClip += reloadCount;
-                currentAmmo -= reloadCount;
-                return;
-            }
+            currentClip += reloadCount; // Fill the clip
+            currentAmmo -= reloadCount; // Reduce current ammo
         }
+
+
+        // Simulate a reload time (for example, 1 second)
+        StartCoroutine(ReloadCooldown());
+    }
+
+    private IEnumerator ReloadCooldown()
+    {
+        yield return new WaitForSeconds(1f); // Adjust this duration as needed
+        isReloading = false; // Reset reloading state
+        canFire = true; // Enable firing again
     }
 
     IEnumerator cooldownFire()

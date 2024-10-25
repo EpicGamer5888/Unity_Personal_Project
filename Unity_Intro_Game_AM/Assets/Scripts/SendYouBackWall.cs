@@ -6,7 +6,7 @@ public class SendYouBackWall : MonoBehaviour
 {
     private void Start()
     {
-        InvokeRepeating("Cycle", 0, Random.Range( 30, 120 ));
+        InvokeRepeating("Cycle", 0, Random.Range( 0, 60 ));
     }
 
     private void Cycle()

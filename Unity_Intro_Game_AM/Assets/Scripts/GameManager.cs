@@ -7,11 +7,28 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+#if UNITY_EDITOR
+            if(!Application.isPlaying)
+            {
+              return null;
+            }
+#endif
+            return instance;
+        }
+    }
+
     public bool isPaused = false;
 
     public GameObject pauseMenu;
-    public PlayerController playerData;
+    public PlayerController player;
 
+ 
     public Image healthBar;
     public TextMeshProUGUI clipCounter;
     public TextMeshProUGUI ammoCounter;
@@ -19,18 +36,19 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         if (SceneManager.GetActiveScene().name != "Main Menu")
-            playerData = GameObject.Find("PlayerWrapper").transform.GetChild(0).GetComponent<PlayerController>();
+            player = GameObject.Find("PlayerWrapper").transform.GetChild(0).GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerData != null)
+        if (player != null)
         {
-            healthBar.fillAmount = Mathf.Clamp(((float)playerData.health / (float)playerData.maxHealth), 0, 1);
+            healthBar.fillAmount = Mathf.Clamp(((float)player.health / (float)player.maxHealth), 0, 1);
 
-            if (playerData.weaponID < 0)
+            if (player.weaponID < 0)
             {
                 clipCounter.gameObject.SetActive(false);
                 ammoCounter.gameObject.SetActive(false);
@@ -39,10 +57,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 clipCounter.gameObject.SetActive(true);
-                clipCounter.text = "Clip: " + playerData.currentClip + "/" + playerData.clipSize;
+                clipCounter.text = "Clip: " + player.currentClip + "/" + player.clipSize;
 
                 ammoCounter.gameObject.SetActive(true);
-                ammoCounter.text = "Ammo: " + playerData.currentAmmo;
+                ammoCounter.text = "Ammo: " + player.currentAmmo;
             }
 
             if (!isPaused && Input.GetKeyDown(KeyCode.Escape))
@@ -90,4 +108,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneID);
     }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown("0"))
+        {
+            Debug.Log("save key pressed");
+            SaveSystem.Save();
+        
+        }
+
+        if (Input.GetKeyDown("1"))
+        {
+            SaveSystem.Load();
+        }
+    }
+
 }

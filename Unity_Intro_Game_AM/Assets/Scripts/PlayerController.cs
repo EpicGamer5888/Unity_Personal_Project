@@ -271,4 +271,20 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(damangeCooldownTimer);
         takenDamage = false;
     }
+
+    public void Save(ref PlayerSaveData data)
+    {
+        data.Position = transform.position;
+    }
+
+    public void Load(PlayerSaveData data)
+    {
+        transform.position = data.Position;
+    }
+}
+
+[System.Serializable]
+public struct PlayerSaveData
+{
+    public Vector3 Position;
 }

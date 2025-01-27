@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI ammoCounter;
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         instance = this;
         if (SceneManager.GetActiveScene().name != "Main Menu")
@@ -114,13 +114,13 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown("0"))
         {
             Debug.Log("save key pressed");
-            SaveSystem.Save();
+            SaveSystemCode.Save();
         
         }
 
         if (Input.GetKeyDown("1"))
         {
-            SaveSystem.Load();
+            FindAnyObjectByType<SaveSystem>().Load();
         }
     }
 

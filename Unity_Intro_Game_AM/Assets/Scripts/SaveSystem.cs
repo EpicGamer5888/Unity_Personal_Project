@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
 
-public class SaveSystem 
+public class SaveSystemCode 
 {
     private static SaveData _saveData = new SaveData();
 
@@ -41,5 +42,38 @@ public class SaveSystem
     private static void HandleLoadData()
     {
         GameManager.Instance.player.Load(_saveData.PlayerData);
+    }
+}
+
+public class SaveSystem : MonoBehaviour
+{
+    public int scene;
+    public bool loading;
+    private static SaveSystem instance;
+
+    private void Start()
+    {
+        if (instance == null)
+            DontDestroyOnLoad(this);
+        else Destroy(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += onSceneLoad;
+    }
+
+    void onSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        if (loading)
+            SaveSystemCode.Load();
+        loading = false;
+    }
+
+    public void Load()
+    {
+        loading = true;
+        scene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(scene);
     }
 }

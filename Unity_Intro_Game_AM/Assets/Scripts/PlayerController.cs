@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     public float bulletLifespan = 0;
     public bool canFire = true;
     public bool isReloading = false;
-
+    [SerializeField] private GameObject[] weaponPrefabs;
 
     [Header("Movement Stats")]
     public bool sprinting = false;
@@ -180,41 +180,17 @@ public class PlayerController : MonoBehaviour
                 weaponSlot.DetachChildren();
             }
 
-            other.transform.SetPositionAndRotation(weaponSlot.position, weaponSlot.rotation);
-
-            other.transform.SetParent(weaponSlot);
+            Destroy(other);
 
             print(other.gameObject.name);
 
             switch (other.gameObject.name)
             {
                 case "weapon1":
-                    weaponSpeaker = other.gameObject.GetComponent<AudioSource>();
-                    damage = 1;
-                    weaponID = 0;
-                    shotVel = 10000;
-                    fireMode = 0;
-                    fireRate = 0.1f;
-                    currentClip = 20;
-                    clipSize = 20;
-                    maxAmmo = 400;
-                    currentAmmo = 200;
-                    reloadAmt = 20;
-                    bulletLifespan = 2f;
+                    EquipWeapon(0);
                     break;
                 case "weapon2":
-                    weaponSpeaker = other.gameObject.GetComponent<AudioSource>();
-                    damage = 5;
-                    weaponID = 1;
-                    shotVel = 10000;
-                    fireMode = 1;
-                    fireRate = 1f;
-                    currentClip = 15;
-                    clipSize = 15;
-                    maxAmmo = 200;
-                    currentAmmo = 100;
-                    reloadAmt = 15;
-                    bulletLifespan = 2f;
+                    EquipWeapon(1);
                     break;
 
                 default:
@@ -223,7 +199,45 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    public void EquipWeapon(int weapon)
+    {
+        switch (weapon)
+        {
+            case 0:
+                GameObject other = Instantiate(weaponPrefabs[0], transform.parent.GetChild(1).GetChild(1));
+                weaponSpeaker = other.GetComponent<AudioSource>();
+                damage = 1;
+                weaponID = 0;
+                shotVel = 10000;
+                fireMode = 0;
+                fireRate = 0.1f;
+                currentClip = 20;
+                clipSize = 20;
+                maxAmmo = 400;
+                currentAmmo = 200;
+                reloadAmt = 20;
+                bulletLifespan = 2f;
+                break;
+            case 1:
+                GameObject other1 = Instantiate(weaponPrefabs[1], transform.parent.GetChild(1).GetChild(1));
+                weaponSpeaker = other1.GetComponent<AudioSource>();
+                damage = 5;
+                weaponID = 1;
+                shotVel = 10000;
+                fireMode = 1;
+                fireRate = 1f;
+                currentClip = 15;
+                clipSize = 15;
+                maxAmmo = 200;
+                currentAmmo = 100;
+                reloadAmt = 15;
+                bulletLifespan = 2f;
+                break;
+
+            default:
+                break;
+        }
+    }
 
     public void reloadClip()
     {
@@ -275,11 +289,28 @@ public class PlayerController : MonoBehaviour
     public void Save(ref PlayerSaveData data)
     {
         data.Position = transform.position;
+        data.weaponID = weaponID;
     }
 
     public void Load(PlayerSaveData data)
     {
         transform.position = data.Position;
+        foreach (Transform t in transform.parent.GetChild(1).GetChild(1))
+        {
+            Destroy(t.gameObject);
+        }
+        switch (data.weaponID)
+        {
+            case 0:
+                EquipWeapon(0);
+                break;
+            case 1:
+                EquipWeapon(1);
+                break;
+            default:
+                weaponID = -1;
+                break;
+        }
     }
 }
 
@@ -287,4 +318,6 @@ public class PlayerController : MonoBehaviour
 public struct PlayerSaveData
 {
     public Vector3 Position;
+    public int weaponID;
+   
 }

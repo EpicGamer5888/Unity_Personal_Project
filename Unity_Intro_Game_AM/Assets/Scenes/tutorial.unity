@@ -1094,6 +1094,7 @@ GameObject:
   - component: {fileID: 420301747}
   - component: {fileID: 420301746}
   - component: {fileID: 420301745}
+  - component: {fileID: 420301751}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1116,6 +1117,7 @@ Transform:
   m_Children:
   - {fileID: 793122952}
   - {fileID: 258874324}
+  - {fileID: 2039818086}
   m_Father: {fileID: 186027938}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &420301745
@@ -1250,10 +1252,11 @@ MonoBehaviour:
   bulletLifespan: 0
   canFire: 1
   isReloading: 0
+  weaponPrefabs: []
   sprinting: 0
   speed: 20
   sprintMult: 1.5
-  jumpHeight: 7
+  jumpHeight: 12
   groundDetection: 1.6
   sprintToggle: 0
   mouseSensitivity: 2
@@ -1285,8 +1288,8 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
+  m_Interpolate: 1
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &420301748
 CapsuleCollider:
@@ -1363,6 +1366,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420301743}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &420301751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420301743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2506534940c0647ab32e5774d9f41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 2039818086}
+  wallDistance: 0.8
+  minimumJumpHeight: 1.5
+  wallRunGravity: 2
+  wallRunJumpForce: 8
 --- !u!1 &474311787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1771,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649739112}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.004}
   m_LocalScale: {x: 0.04, y: 0.05, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1759,7 +1779,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.55, y: 0.082}
+  m_AnchoredPosition: {x: -0.55, y: 0.39}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649739114
@@ -1782,7 +1802,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Can Go Through Some Walls
+  m_text: 'You Can Go Through Some Walls
+
+    To Save Press 0 and to load press 1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1809,8 +1831,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2031,7 +2053,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2090,13 +2112,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.26336542, y: -0.09935146, z: -0.1833103, w: 0.94189453}
+  m_LocalRotation: {x: -0.72011685, y: -0.02194593, z: -0.28157306, w: 0.6337719}
   m_LocalPosition: {x: 0, y: 38.3, z: -48.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -32.178, y: -6.145, z: -20.252}
+  m_LocalEulerAnglesHint: {x: -67.689, y: 95.76, z: -121.032}
 --- !u!1 &790628873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,7 +2150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   pauseMenu: {fileID: 1070294785}
-  playerData: {fileID: 0}
+  player: {fileID: 0}
   healthBar: {fileID: 1247458673}
   clipCounter: {fileID: 1122769545}
   ammoCounter: {fileID: 645628456}
@@ -5479,6 +5501,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943682749}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2039818085
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039818086}
+  m_Layer: 0
+  m_Name: orientation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2039818086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039818085}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 420301744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088263791
 GameObject:
   m_ObjectHideFlags: 0
